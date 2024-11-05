@@ -45,6 +45,7 @@ public enum UserRoleEnum {
         if (ObjectUtils.isEmpty(value)) {
             return null;
         }
+        //for循环遍历枚举值可以用Map优化
         for (UserRoleEnum anEnum : UserRoleEnum.values()) {
             if (anEnum.value.equals(value)) {
                 return anEnum;

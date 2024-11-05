@@ -1,4 +1,4 @@
-package ${packageName}.model.dto.${dataKey};
+package com.hy.mianshibagu.model.dto.questionbankquestion;
 
 import lombok.Data;
 
@@ -6,28 +6,28 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * 创建${dataName}请求
+ * 更新题库题目关联请求
  *
  * @author <a href="https://github.com/yanghengdaren">yanghengdaren</a>
  * @from <a href="https://github.com/yanghengdaren">yanghengdaren</a>
  */
 @Data
-public class ${upperDataKey}AddRequest implements Serializable {
+public class QuestionBankQuestionUpdateRequest implements Serializable {
 
     /**
-     * 标题
+     * id
      */
-    private String title;
+    private Long id;
 
     /**
-     * 内容
+     * 题库 id
      */
-    private String content;
+    private Long questionBankId;
 
     /**
-     * 标签列表
+     * 题目 id
      */
-    private List<String> tags;
+    private Long questionId;
 
     private static final long serialVersionUID = 1L;
 }

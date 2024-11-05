@@ -1,36 +1,18 @@
-package ${packageName}.model.dto.${dataKey};
+package com.hy.mianshibagu.model.dto.question;
 
-import ${packageName}.common.PageRequest;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 import java.util.List;
 
 /**
- * 查询${dataName}请求
+ * 创建题目请求
  *
  * @author <a href="https://github.com/yanghengdaren">yanghengdaren</a>
  * @from <a href="https://github.com/yanghengdaren">yanghengdaren</a>
  */
-@EqualsAndHashCode(callSuper = true)
 @Data
-public class ${upperDataKey}QueryRequest extends PageRequest implements Serializable {
-
-    /**
-     * id
-     */
-    private Long id;
-
-    /**
-     * id
-     */
-    private Long notId;
-
-    /**
-     * 搜索词
-     */
-    private String searchText;
+public class QuestionAddRequest implements Serializable {
 
     /**
      * 标题
@@ -48,9 +30,9 @@ public class ${upperDataKey}QueryRequest extends PageRequest implements Serializ
     private List<String> tags;
 
     /**
-     * 创建用户 id
+     * 推荐答案
      */
-    private Long userId;
+    private String answer;
 
     private static final long serialVersionUID = 1L;
 }
