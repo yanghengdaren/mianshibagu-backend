@@ -262,6 +262,9 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question> i
                     .collect(Collectors.toSet());
             if(CollUtil.isNotEmpty(questionList)){
                 queryWrapper.in("id", questionIdSet);
+            }else {
+                //题库为空
+                return new Page<>(current, size,0);
             }
 
         }
