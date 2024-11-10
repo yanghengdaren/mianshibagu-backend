@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
  * @from <a href="https://github.com/yanghengdaren">yanghengdaren</a>
  */
 // todo 取消注释开启任务
-@Component
+//@Component
 @Slf4j
 public class FullSyncQuestionToEs implements CommandLineRunner {
 

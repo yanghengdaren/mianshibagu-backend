@@ -14,10 +14,7 @@ import com.hy.mianshibagu.common.ResultUtils;
 import com.hy.mianshibagu.constant.UserConstant;
 import com.hy.mianshibagu.exception.BusinessException;
 import com.hy.mianshibagu.exception.ThrowUtils;
-import com.hy.mianshibagu.model.dto.question.QuestionAddRequest;
-import com.hy.mianshibagu.model.dto.question.QuestionEditRequest;
-import com.hy.mianshibagu.model.dto.question.QuestionQueryRequest;
-import com.hy.mianshibagu.model.dto.question.QuestionUpdateRequest;
+import com.hy.mianshibagu.model.dto.question.*;
 import com.hy.mianshibagu.model.entity.Question;
 import com.hy.mianshibagu.model.entity.QuestionBankQuestion;
 import com.hy.mianshibagu.model.entity.User;
@@ -255,6 +252,12 @@ public class QuestionController {
         return ResultUtils.success(true);
     }
 
+    /**
+     * es搜索请求
+     * @param questionQueryRequest
+     * @param request
+     * @return
+     */
     @PostMapping("/search/page/vo")
     public BaseResponse<Page<QuestionVO>> searchQuestionVOByPage(@RequestBody QuestionQueryRequest questionQueryRequest,
                                                                  HttpServletRequest request) {
@@ -263,6 +266,21 @@ public class QuestionController {
         ThrowUtils.throwIf(size > 200, ErrorCode.PARAMS_ERROR);
         Page<Question> questionPage = questionService.searchFromEs(questionQueryRequest);
         return ResultUtils.success(questionService.getQuestionVOPage(questionPage, request));
+    }
+
+    /**
+     * 批量删除题目请求
+     * @param questionBatchDeleteRequest
+     * @param request
+     * @return
+     */
+    @PostMapping("/delete/batch")
+    @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
+    public BaseResponse<Boolean> batchDeleteQuestions(@RequestBody QuestionBatchDeleteRequest questionBatchDeleteRequest,
+                                                      HttpServletRequest request) {
+        ThrowUtils.throwIf(questionBatchDeleteRequest == null, ErrorCode.PARAMS_ERROR);
+        questionService.batchDeleteQuestions(questionBatchDeleteRequest.getQuestionIdList());
+        return ResultUtils.success(true);
     }
 
     // endregion
