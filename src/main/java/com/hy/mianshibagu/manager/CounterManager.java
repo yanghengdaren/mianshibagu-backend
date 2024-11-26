@@ -89,6 +89,12 @@ public class CounterManager {
         String redisKey = key + ":" + timeFactor;
 
         // Lua 脚本
+        //如果 Redis 键存在：
+        //调用 incr 将计数器值加 1，并返回新的计数值。
+        //如果 Redis 键不存在：
+        //调用 set 初始化计数器为 1。
+        //调用 expire 设置过期时间（ARGV[1]，单位是秒）。
+        //返回计数值 1。
         String luaScript =
                 "if redis.call('exists', KEYS[1]) == 1 then " +
                         "  return redis.call('incr', KEYS[1]); " +
